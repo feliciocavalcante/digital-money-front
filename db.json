@@ -1,50 +1,52 @@
 {
   "transactions": [
     {
-      "id": "950a",
-      "title": "Curso",
-      "price": 2500,
-      "category": "Educação",
-      "transactionType": "withdraw",
-      "date": "17/05/2025"
-    },
-    {
-      "title": "Café em barras de ouro",
-      "price": 908,
-      "category": "Alimentacao",
-      "transactionType": "withdraw",
-      "date": "07/06/2025",
-      "id": "8bca"
-    },
-    {
-      "id": "6d47",
+      "id": "6e44",
       "title": "Felicio",
-      "price": "1000",
+      "price": "29999999",
       "transitionType": "input",
-      "category": "Educação"
+      "category": "Educação",
+      "date": "14/07/2025"
     },
     {
-      "id": "bb33",
-      "title": "Escola",
+      "id": "d9e7",
+      "title": "salario",
+      "price": "2222",
+      "transitionType": "output",
+      "category": "salario",
+      "date": "14/07/2025"
+    },
+    {
+      "id": "f9a5",
+      "title": "salario",
+      "price": "22200",
+      "transitionType": "input",
+      "category": "salario",
+      "date": "14/07/2025"
+    },
+    {
+      "id": "c0fd",
+      "title": "salario",
+      "price": "200000",
+      "transitionType": "output",
+      "category": "salario",
+      "date": "14/07/2025"
+    },
+    {
+      "id": "b4d7",
+      "title": "salariio",
       "price": "2000",
       "transitionType": "input",
-      "category": "Educação"
+      "category": "salario",
+      "date": "14/07/2025"
     },
     {
-      "id": "1358",
-      "title": "Felicio",
-      "price": "200000",
-      "transitionType": "input",
-      "category": "Educação",
-      "date": "07/07/2025"
-    },
-    {
-      "id": "ffaa",
+      "id": "4be5",
       "title": "",
-      "price": "",
-      "transitionType": "input",
+      "price": "300",
+      "transitionType": "output",
       "category": "",
-      "date": "07/07/2025"
+      "date": "14/07/2025"
     }
   ]
 }

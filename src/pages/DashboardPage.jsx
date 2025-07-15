@@ -3,12 +3,15 @@ import {
   ArrowCircleUp,
   Car,
   CurrencyDollar,
+  Drop,
   TrashSimple,
 } from "phosphor-react";
 import Modal from "../components/Modal/Modal";
 import { useEffect, useState } from "react";
 import Card from "../components/Card/Card";
 import axios from "axios";
+import { API_BASE_URL } from "../utils/constants";
+import DropdownOptions from "../components/DropdownOptions/DropdownOptions";
 
 function DashbordPage() {
   const [open, setOpen] = useState(false);
@@ -24,7 +27,32 @@ function DashbordPage() {
   useEffect(() => {
     getTransactions();
   }, []);
-  // getTransactions();
+
+
+
+
+  async function handleDeleteTransaction(id) {
+    // Pop up de confirmação
+
+    const confirm = window.confirm("Você tem certeza que deseja excluir esta transação?");
+
+    if (!confirm) {
+      return;
+    }
+    await axios.delete(API_BASE_URL + `/transactions/${id}`)
+  }
+ 
+  const allInputsSum = transactions.filter((transaction) => transaction.transitionType === 
+  "input").reduce((prev, curr) => {
+    return prev + parseFloat(curr.price);
+  }, 0);
+
+    const allOutputsSum = transactions.filter((transaction) => transaction.transitionType === 
+  "output").reduce((prev, curr) => {
+    return prev + parseFloat(curr.price);
+  }, 0);
+
+const total = allInputsSum - allOutputsSum;
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
@@ -40,13 +68,19 @@ function DashbordPage() {
             Nova transação
           </button>
         </div>
+         <div className="flex justify-end pt-4 md:px-6">
+           <DropdownOptions />
+          
+         </div>
+       
+
       </header>
       <main className="flex-1 container mx-auto py-8 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 -mt-24">
 
-          <Card title="Entradas" icon={<ArrowCircleUp className="text-green-500" size={32} />} amount="R$ 0,00" bgColor="bg-white" />
-          <Card title="Saídas" icon={<ArrowCircleDown className="text-red-500" size={32} />} amount="R$ 0,00" bgColor="bg-white" />
-          <Card title="Total" icon={<CurrencyDollar size={32} />} amount="R$ 0,00" bgColor="bg-emerald-500" textColor="text-white" />
+          <Card title="Entradas" icon={<ArrowCircleUp className="text-green-500" size={32} />} amount={allInputsSum} bgColor="bg-white" />
+          <Card title="Saídas" icon={<ArrowCircleDown className="text-red-500" size={32} />} amount={allOutputsSum} bgColor="bg-white" />
+          <Card title="Total" icon={<CurrencyDollar size={32} />} amount={total} bgColor="bg-emerald-500" textColor="text-white" />
 
 
 
@@ -76,11 +110,12 @@ function DashbordPage() {
                     <td className="px-6 py-4">{transaction.category}</td>
                     <td className="px-6 py-4">{transaction.date}</td>
                     <td className="px-6 py-4">
-                      <button className="text-blue-500 hover:text-blue-700">
+                      <button className="text-blue-500 hover:text-blue-700 cursor-pointer ">
                         <TrashSimple
                           size={24}
                           weight="fill"
                           className="text-red-500"
+                          onClick={() => handleDeleteTransaction(transaction.id)}
                         />
                       </button>
                     </td>
