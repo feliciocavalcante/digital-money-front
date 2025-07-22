@@ -5,19 +5,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/Login.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
 import { ToastContainer } from "react-toastify";
-import { TransactionProvider } from "./contexts/TransactionContext.jsx";
+import  { ThemeProvider } from "./contexts/ThemeContext.jsx";
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <TransactionProvider>
+       <ThemeProvider>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} index />
-          <Route path="*" element={<h1>404 - Not Found</h1>} />
-          
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
-      </TransactionProvider>
+      </ThemeProvider>
     </BrowserRouter>
 
     <ToastContainer />
